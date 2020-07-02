@@ -1,3 +1,8 @@
+if exists('b:current_syntax')
+  let s:current_syntax = b:current_syntax
+  unlet b:current_syntax
+endif
+
 syntax match seqOperator /\v\-+\>+/ nextgroup=seqLabel
 syntax match seqSeprator /\v:/ nextgroup=seqMessage
 
@@ -20,5 +25,8 @@ highlight link seqOperator Label
 highlight link seqSeprator Label
 highlight link seqMessage String
 
-let b:current_syntax = 'sequence'
-
+if exists('s:current_syntax')
+  let b:current_syntax = s:current_syntax
+else
+  let b:current_syntax = 'sequence'
+endif
